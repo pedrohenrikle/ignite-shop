@@ -2,7 +2,6 @@ import axios from "axios"
 import { GetStaticPaths, GetStaticProps } from "next"
 import Head from "next/head"
 import Image from "next/image"
-import { useRouter } from "next/router"
 import { useState } from "react"
 import Stripe from "stripe"
 import { stripe } from "../../lib/stripe"
@@ -26,7 +25,7 @@ export default function Product({product}: ProductProps) {
     try {
       setIsCreatingCheckoutSession(true)
 
-      const response = await axios.post('/api/checkout', {
+      const response = await axios.post(`${process.env.NEXT_URL}/api/checkout`, {
         priceId: product.defaultPriceId
       })  
 
