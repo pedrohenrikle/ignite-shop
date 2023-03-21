@@ -7,6 +7,7 @@ import Stripe from "stripe"
 import { stripe } from "../../lib/stripe"
 import { ImageContainer, ProductContainer, ProductDetails } from "../../styles/pages/product"
 
+
 interface ProductProps {
   product: {
     id: string
@@ -25,7 +26,7 @@ export default function Product({product}: ProductProps) {
     try {
       setIsCreatingCheckoutSession(true)
 
-      const response = await axios.post(`${process.env.NEXT_URL}/api/checkout`, {
+      const response = await axios.post(`/api/checkout`, {
         priceId: product.defaultPriceId
       })  
 
@@ -38,7 +39,7 @@ export default function Product({product}: ProductProps) {
       setIsCreatingCheckoutSession(false)
 
       
-      alert(err)
+      console.log(err)
       // alert('Falha ao redirecionar ao checkout')
     }
   }
@@ -46,7 +47,7 @@ export default function Product({product}: ProductProps) {
   return (
     <>
       <Head>
-        <title>{product.name} | Ignite Shop</title>
+        <title>{product.name}</title>
       </Head>
       
       <ProductContainer>

@@ -38,6 +38,7 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
   - [Stripe](https://stripe.com/br)
   - [Axios](https://axios-http.com/ptbr/)
   - [Keen-Slider](https://keen-slider.io/)
+  - [Stitches](https://stitches.dev/)
 
 
 ## 💻 Projeto
