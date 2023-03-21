@@ -45,7 +45,7 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 O Ignite Shop é uma loja online para venda de camisetas. Este projeto serviu de base para aprender os fundamentos do framework ```NextJs```, junto ao conceitos de API Routes, Fallback e páginas SSG e SSR 💡.
 
-- [Visite o projeto online](https://pomodoro-timer-two-sooty.vercel.app/)
+- [Visite o projeto online](https://ignite-shop-nine-lyart.vercel.app/)
 
 ## 🔖 Layout
 
