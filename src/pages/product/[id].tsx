@@ -1,11 +1,16 @@
 import axios from "axios"
+
 import { GetStaticPaths, GetStaticProps } from "next"
 import Head from "next/head"
 import Image from "next/image"
+import { useRouter } from "next/router"
+
 import { useState } from "react"
-import Stripe from "stripe"
+
 import { stripe } from "../../lib/stripe"
-import { ImageContainer, ProductContainer, ProductDetails } from "../../styles/pages/product"
+import Stripe from "stripe"
+
+import { ImageContainer, ImageSkeleton, ProductContainer, ProductDetails, ProductDetailsSkeleton } from "../../styles/pages/product"
 
 
 interface ProductProps {
@@ -21,6 +26,29 @@ interface ProductProps {
 
 export default function Product({product}: ProductProps) {
   const [isCreatingCheckoutSession, setIsCreatingCheckoutSession] = useState(false)
+  const { isFallback } = useRouter()
+
+  // skeleton screen
+  if (isFallback) {
+    return (
+      <>
+        <Head>
+          <title>Carregando...</title>
+        </Head>
+
+        <ProductContainer>
+          <ImageSkeleton />
+
+          <ProductDetailsSkeleton>
+            <h1 />
+            <span />
+
+            <div />
+          </ProductDetailsSkeleton>
+        </ProductContainer>
+      </>
+    )
+  }
 
   async function handleBuyProduct() {
     try {
@@ -75,7 +103,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     paths: [
       { params: { id: 'prod_NXTItCqEsJQQLj'}}
     ],
-    fallback: 'blocking',
+    fallback: true,
   }
 }
 
