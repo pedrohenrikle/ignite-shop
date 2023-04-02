@@ -10,6 +10,7 @@ import 'keen-slider/keen-slider.min.css'
 
 import { stripe } from "../lib/stripe"
 import Stripe from "stripe"
+import { useRouter } from "next/router"
 
 interface HomeProps {
   products: {
@@ -21,6 +22,7 @@ interface HomeProps {
 }
 
 export default function Home({products}: HomeProps) {
+  const { isFallback } = useRouter()
   const [sliderRef] = useKeenSlider({
     slides: {
       perView: 3,
@@ -28,27 +30,44 @@ export default function Home({products}: HomeProps) {
     }
   })
 
+  if (isFallback) {
+    return (
+      <HomeContainer ref={sliderRef} className='keen-slider'>
+        <Product className='keen-slider__slide'>
+          <div />
+
+          <footer>
+            <strong />
+            <span />
+          </footer>
+        </Product>
+      </HomeContainer>
+    )
+  }
+
+
   return (
     <>
       <Head>
         <title>Home | Ignite Shop</title>
       </Head>
 
+      
       <HomeContainer ref={sliderRef} className='keen-slider'>
-      {products.map((product) => {
-        return (
-          <Link href={`/product/${product.id}`} key={product.id} prefetch={false}>
-            <Product className='keen-slider__slide'>
-            <Image src={product.imageUrl} width={520} height={480} alt={""}/>
+          {products.map((product) => {
+            return (
+              <Link href={`/product/${product.id}`} key={product.id} prefetch={false}>
+                <Product className='keen-slider__slide'>
+                <Image src={product.imageUrl} width={520} height={480} alt={""}/>
 
-            <footer>
-              <strong>{product.name}</strong>
-              <span>{product.price}</span>
-            </footer>
-          </Product>
-        </Link>
-        )
-      })}
+                <footer>
+                  <strong>{product.name}</strong>
+                  <span>{product.price}</span>
+                </footer>
+              </Product>
+            </Link>
+            )
+          })}
       </HomeContainer>
     </>
   )
@@ -80,7 +99,7 @@ export const getStaticProps: GetStaticProps = async () => {
     props: {
       products,
     },
-    revalidate: 60 * 60 * 2, // 2 horas
+    revalidate: 60 * 60 * 1, // 1 horas
   }
 
 }
