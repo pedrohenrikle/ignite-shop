@@ -38,6 +38,8 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
   - [Stripe](https://stripe.com/br)
   - [Axios](https://axios-http.com/ptbr/)
   - [Keen-Slider](https://keen-slider.io/)
+  - [Immer](https://github.com/immerjs/immer)
+  - [Radix UI](https://www.radix-ui.com/)
   - [Stitches](https://stitches.dev/)
 
 
