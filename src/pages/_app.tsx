@@ -1,22 +1,26 @@
-import { AppProps } from "next/app"
-import { Container } from "../styles/pages/app"
-import { globalStyles } from "../styles/global"
-import { Header } from "../components/Header"
-import { CartContextProvider } from "../contexts/CartContext"
-import { ToastContainer } from "react-toastify"
+import { AppProps } from 'next/app'
+import { globalStyles } from '../styles/global'
 
-import 'react-toastify/dist/ReactToastify.css';
+import { Container } from '../styles/pages/app'
+
+import { CartContextProvider } from '../contexts/CartContext'
+import { Cart } from '../components/cart'
+import { Header } from '../components/header'
 
 globalStyles()
 
-export default function App({ Component, pageProps }: AppProps) {
+function App({ Component, pageProps }: AppProps) {
   return (
-    <CartContextProvider>
-      <Container>
+    <Container>
+      <CartContextProvider>
         <Header />
-        <ToastContainer />
+
+        <Cart />
+
         <Component {...pageProps} />
-      </Container>
-    </CartContextProvider>
+      </CartContextProvider>
+    </Container>
   )
 }
+
+export default App
