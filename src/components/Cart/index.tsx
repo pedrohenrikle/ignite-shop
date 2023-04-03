@@ -12,8 +12,27 @@ import {
 import { EmptyCart } from './EmptyCart'
 import { ContentCart } from './ContentCart'
 
+
+export interface ProductProps {
+  id: string
+  name: string
+  imageUrl: string
+  price: string
+  priceNumber: number
+  description: string
+  defaultPriceId: string
+}
+
+export interface CartContextProps {
+  cartItems: ProductProps[]
+  addCart: (product: ProductProps) => void
+  removeCart: (productId: string) => void
+  checkIfAlreadyInCart: (productId: string) => boolean
+  cartTotalPrice: number
+}
+
 export function Cart() {
-  const { cartItems } = useCart()
+  const { cartItems } = useCart() as CartContextProps
 
   return (
     <Dialog.Root>
