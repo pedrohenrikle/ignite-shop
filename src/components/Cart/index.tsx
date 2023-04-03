@@ -11,6 +11,8 @@ import {
 } from './styles'
 import { EmptyCart } from './EmptyCart'
 import { ContentCart } from './ContentCart'
+import { useContext } from 'react'
+import { CartContext } from '../../contexts/CartContext'
 
 
 export interface ProductProps {
@@ -32,7 +34,7 @@ export interface CartContextProps {
 }
 
 export function Cart() {
-  const { cartItems } = useCart() as CartContextProps
+  const { cartItems } = useContext(CartContext) as CartContextProps
 
   return (
     <Dialog.Root>

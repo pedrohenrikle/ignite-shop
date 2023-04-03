@@ -1,9 +1,10 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 import Image from 'next/image'
 import axios from "axios"
 import { Spinner } from "../../Spinner"
 import { useCart } from "../../../hooks/useCart"
 import { ProductCart, ProductCartWrapper, ProductImage, ProductInfo, ProductsResume } from "./styles"
+import { CartContext } from "../../../contexts/CartContext"
 
 export interface ProductProps {
     id: string
@@ -25,7 +26,7 @@ export interface CartContextProps {
 
 export function ContentCart() {
     const [isCreatingCheckoutSession, setIsCreatingCheckoutSession] = useState(false)
-    const { cartItems, removeCart, cartTotalPrice } = useCart() as CartContextProps;
+    const { cartItems, removeCart, cartTotalPrice } = useContext(CartContext) as CartContextProps;
 
     const formattedTotalPrice = new Intl.NumberFormat('pt-BR', {
         style: 'currency',
