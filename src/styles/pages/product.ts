@@ -1,70 +1,90 @@
-import { styled } from '..'
+import { styled } from ".."
 
-export const ProductsContainer = styled('main', {
+export const ProductContainer = styled('main', {
   display: 'grid',
-  gridTemplateColumns: 'repeat(2, 1fr)',
+  gridTemplateColumns: '1fr 1fr',
   alignItems: 'stretch',
-
+  gap: '4rem',
   maxWidth: 1180,
   margin: '0 auto',
-  gap: '7.2rem',
-  marginTop: '-5.5rem',
+
+  '@md': {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+
+  '@container': {
+    padding: '1rem',
+  }
 })
 
-export const ImageContainer = styled('main', {
-  background: 'linear-gradient(180deg, #1ea483 0%, #7465d4 100%)',
-  height: '65.6rem',
-  borderRadius: 8,
-  padding: '0.4rem',
+export const ImageContainer = styled('div', {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
+  width: '100%',
+  maxWidth: 576,
+  height: 656,
+  background: 'linear-gradient(180deg, #1ea483 0%, #7465e4 100%)',
+  borderRadius: 8,
+  padding: '0.25rem',
+
+  '@md': {
+    height: 400
+  },
 
   img: {
-    objectFit: 'cover',
-  },
+    objectFit: 'cover'
+  }
 })
 
-export const ProductContainer = styled('main', {
+export const ProductDetails = styled('div', {
   display: 'flex',
   flexDirection: 'column',
 
-  strong: {
-    fontSize: '3.2rem',
+  h1: {
+    fontSize: '$2xl',
     color: '$gray300',
   },
 
   span: {
-    marginTop: '1.6rem',
-    fontSize: '3.2rem',
-    color: '$green300',
+    marginTop: '1rem',
+    display: 'block',
+    fontSize: '$2xl',
+    color: '$green300'
   },
 
   p: {
-    marginTop: '4.0rem',
+    marginTop: '2.5rem',
+    fontSize: '$md',
+    lineHeight: 1.6,
     color: '$gray300',
-    lineHeight: '1.6',
-    fontSize: '1.8rem',
   },
 
   button: {
     marginTop: 'auto',
-    borderRadius: '8px',
-    color: '#FFF',
-    padding: '2rem',
     backgroundColor: '$green500',
-    fontSize: '$md',
+    border: 0,
+    color: '$white',
+    borderRadius: 8,
+    padding: '1.25rem',
+    cursor: 'pointer',
     fontWeight: 'bold',
-    transition: '0.4s',
-    border: '0',
+    fontSize: '$md',
+    transition: 'background-color 0.2s ease-in-out',
 
-    '&:disabled': {
-      cursor: 'not-allowed',
-      opacity: '0.6',
+    '@md': {
+      marginTop: '1.5rem'
     },
 
     '&:not(:disabled):hover': {
-      backgroundColor: '$green300',
+      backgroundColor: '$green300'
     },
-  },
+
+    '&:disabled': {
+      opacity: 0.6,
+      cursor: 'not-allowed'
+    }
+  }
 })

@@ -1,68 +1,68 @@
-import { styled } from '..'
+import { styled } from ".."
 
-export const SuccessContainer = styled('div', {
+export const SuccessContainer = styled('main', {
   display: 'flex',
   flexDirection: 'column',
-  justifyContent: 'center',
   alignItems: 'center',
-
+  justifyContent: 'center',
   margin: '0 auto',
+  height: 656,
+
+  '@container': {
+    padding: '0 1rem'
+  },
+
+  '@notebook': {
+    minHeight: 'calc(100vh - 120px)',
+  },
 
   h1: {
-    fontSize: '3.2rem',
-    color: '$gray100',
+    fontSize: '$2xl',
+    color: '$gray100'
   },
 
   p: {
-    width: '100%',
-    maxWidth: '59rem',
-    marginTop: '3.2rem',
+    fontSize: '$xl',
     color: '$gray300',
-    fontSize: '2.4rem',
+    maxWidth: 560,
     textAlign: 'center',
-    lineHeight: '1.4',
+    marginTop: '2rem',
+    lineHeight: 1.4,
   },
 
   a: {
     display: 'block',
-    marginTop: '8rem',
-    fontSize: '2rem',
-    fontWeight: '700',
+    marginTop: '5rem',
     color: '$green500',
-    transition: '0.4s',
+    fontSize: '$lg',
     textDecoration: 'none',
+    fontWeight: 'bold',
 
     '&:hover': {
-      color: '$green300',
-    },
-  },
+      color: '$green300'
+    }
+  }
+})
+
+export const ImageSection = styled('div', {
+  display: 'flex',
+  flexWrap: 'wrap',
+  justifyContent: 'center',
+  marginTop: '4rem'
 })
 
 export const ImageContainer = styled('div', {
-  background: 'linear-gradient(180deg, #1ea483 0%, #7465d4 100%)',
-  boxShadow: '0px 0px 60px rgba(0, 0, 0, 0.8)',
-  width: '14rem',
-  height: '14rem',
-
+  position: 'relative',
+  zIndex: 1,
   display: 'flex',
   justifyContent: 'center',
+  alignItems: 'center',
+  padding: '0.25rem',
+  margin: '0 -26px',
+
+  width: 140,
+  height: 140,
+  background: 'linear-gradient(180deg, #1ea483 0%, #7465e4 100%)',
   borderRadius: '50%',
-  alignItems: 'center',
-  position: 'relative',
-
-  marginTop: '6.4rem',
-
-  img: {
-    objectFit: 'cover',
-  },
-})
-
-export const ImagesContainer = styled('div', {
-  display: 'flex',
-  marginBottom: '4.8rem',
-  alignItems: 'center',
-
-  'div + div': {
-    marginLeft: 'calc(-140px / 2)',
-  },
+  boxShadow: '0px 0px 60px rgba(0, 0, 0, 0.8)',
 })

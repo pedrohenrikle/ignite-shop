@@ -1,17 +1,19 @@
-import { styled } from '../../styles'
+import { styled } from "../../styles";
 
 export const HeaderContainer = styled('header', {
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
   width: '100%',
   maxWidth: 1180,
-  padding: '3.2rem 0',
+  padding: '2rem 0',
   margin: '0 auto',
 
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  marginBottom: '10rem',
+  '@sm': {
+    padding: '1.5rem 1rem',
+  },
 
-  button: {
-    marginLeft: 'auto',
+  '@container': {
+    padding: '2rem 1rem',
   },
 })

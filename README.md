@@ -1,5 +1,5 @@
 <h1 align="center">
-    <img alt="Logo Ignite Shop" title="Logo Ignite Shop" src=".github/logo.svg" /> 
+    <img alt="Logo Ignite Shop" title="Logo Ignite Shop" src=".github/logo.svg" />
 </h1>
 
 <p align="center">
@@ -35,19 +35,20 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
   - [ReactJs](https://pt-br.reactjs.org/)
   - [NextJs](https://nextjs.org/)
   - [TypeScript](https://www.typescriptlang.org/)
-  - [Stripe](https://stripe.com/br)
   - [Axios](https://axios-http.com/ptbr/)
   - [Keen-Slider](https://keen-slider.io/)
   - [Immer](https://github.com/immerjs/immer)
   - [Radix UI](https://www.radix-ui.com/)
   - [Stitches](https://stitches.dev/)
+  - [React Toastify](https://fkhadra.github.io/react-toastify/introduction)
+  - [Stripe](https://stripe.com/br)
 
 
 ## 💻 Projeto
 
 O Ignite Shop é uma loja online para venda de camisetas. Este projeto serviu de base para aprender os fundamentos do framework ```NextJs```, junto ao conceitos de API Routes, Fallback e páginas SSG e SSR 💡.
 
-- [Visite o projeto online](https://ignite-shop-nine-tan.vercel.app/)
+- [Visite o projeto online](https://ignite-shop-efy7n1p87-pedrohenrikle.vercel.app/)
 
 ## 🔖 Layout
 
