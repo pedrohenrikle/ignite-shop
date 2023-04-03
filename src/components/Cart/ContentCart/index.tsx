@@ -4,10 +4,11 @@ import axios from "axios"
 import { Spinner } from "../../Spinner"
 import { useCart } from "../../../hooks/useCart"
 import { ProductCart, ProductCartWrapper, ProductImage, ProductInfo, ProductsResume } from "./styles"
+import { CartContextProps } from "../../../contexts/CartContext"
 
 export function ContentCart() {
     const [isCreatingCheckoutSession, setIsCreatingCheckoutSession] = useState(false)
-    const { cartItems, removeCart, cartTotalPrice } = useCart()
+    const { cartItems, removeCart, cartTotalPrice } = useCart() as CartContextProps;
 
     const formattedTotalPrice = new Intl.NumberFormat('pt-BR', {
         style: 'currency',

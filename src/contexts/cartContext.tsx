@@ -11,7 +11,7 @@ export interface ProductProps {
     defaultPriceId: string
 }
 
-interface CartContextProps {
+export interface CartContextProps {
     cartItems: ProductProps[]
     addCart: (product: ProductProps) => void
     removeCart: (productId: string) => void
