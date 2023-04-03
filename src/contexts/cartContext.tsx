@@ -1,5 +1,6 @@
 import { createContext, ReactNode, useState } from "react"
 import { addCartToast, removeCartToast } from "../components/Toast"
+
 export interface ProductProps {
     id: string
     name: string
