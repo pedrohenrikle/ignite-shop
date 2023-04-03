@@ -1,5 +1,5 @@
 <h1 align="center">
-    <img alt="Logo Ignite Shop" title="Logo Ignite Shop" src=".github/logo.svg" />
+    <img alt="Logo Ignite Shop" title="Logo Ignite Shop" src=".github/logo.svg" />Ignite S
 </h1>
 
 <p align="center">
@@ -38,6 +38,8 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
   - [Stripe](https://stripe.com/br)
   - [Axios](https://axios-http.com/ptbr/)
   - [Keen-Slider](https://keen-slider.io/)
+  - [Immer](https://github.com/immerjs/immer)
+  - [Radix UI](https://www.radix-ui.com/)
   - [Stitches](https://stitches.dev/)
 
 

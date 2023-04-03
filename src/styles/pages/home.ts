@@ -1,4 +1,5 @@
-import { styled } from "..";
+import { styled } from '..'
+import Link from 'next/link'
 
 export const HomeContainer = styled('main', {
   display: 'flex',
@@ -7,29 +8,34 @@ export const HomeContainer = styled('main', {
   maxWidth: 'calc(100vw - ((100vw - 1180px) / 2))',
   marginLeft: 'auto',
   minHeight: 656,
+  overflow: 'hidden',
+  marginTop: '-5rem',
 })
 
-export const Product = styled('div', {
+export const Product = styled(Link, {
+  borderRadius: '0.8rem',
   background: 'linear-gradient(180deg, #1ea483 0%, #7465d4 100%)',
-  borderRadius: 8,
-  // conflito com keen-slide -> padding: '0.25rem',
-  cursor: 'pointer',
+
   position: 'relative',
-  overflow: 'hidden',
 
   display: 'flex',
-  alignItems: 'center',
   justifyContent: 'center',
+  alignItems: 'center',
+  cursor: 'pointer',
+  overflow: 'hidden',
+  userSelect: 'none',
+
+  color: '#FFF',
 
   img: {
-    objectFit: 'cover'
+    objectFit: 'cover',
   },
 
   footer: {
     position: 'absolute',
-    bottom: '0.25rem',
-    left: '0.25rem',
-    right: '0.25rem',
+    bottom: '0.4rem',
+    left: '0.4rem',
+    right: '0.4rem',
     padding: '2rem',
 
     borderRadius: 6,
@@ -43,23 +49,29 @@ export const Product = styled('div', {
     transform: 'translateY(110%)',
     opacity: 0,
     transition: 'all 0.2s ease-in-out',
-  
+
+    div: {
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '0.25rem',
+    },
+
     strong: {
-      fontSize: '$lg',
-      color: '$gray100'
+      fontSize: '$md',
+      color: '$gray100',
     },
 
     span: {
       fontSize: '$xl',
-      fontWeight: 'bold',
       color: '$green300',
-    }
+      fontWeight: 'bold',
+    },
   },
 
   '&:hover': {
     footer: {
-      transform: 'translateY(0%)',
       opacity: 1,
-    }
-  }
+      transform: 'translateY(0%)',
+    },
+  },
 })
