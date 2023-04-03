@@ -4,7 +4,24 @@ import axios from "axios"
 import { Spinner } from "../../Spinner"
 import { useCart } from "../../../hooks/useCart"
 import { ProductCart, ProductCartWrapper, ProductImage, ProductInfo, ProductsResume } from "./styles"
-import { CartContextProps } from "../../../contexts/CartContext"
+
+export interface ProductProps {
+    id: string
+    name: string
+    imageUrl: string
+    price: string
+    priceNumber: number
+    description: string
+    defaultPriceId: string
+}
+
+export interface CartContextProps {
+    cartItems: ProductProps[]
+    addCart: (product: ProductProps) => void
+    removeCart: (productId: string) => void
+    checkIfAlreadyInCart: (productId: string) => boolean
+    cartTotalPrice: number
+}
 
 export function ContentCart() {
     const [isCreatingCheckoutSession, setIsCreatingCheckoutSession] = useState(false)
