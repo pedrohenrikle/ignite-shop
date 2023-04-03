@@ -84,7 +84,7 @@ export const getStaticProps: GetStaticProps<any, { id: string }> = async ({
           style: 'currency',
           currency: 'BRL',
         }).format((price.unit_amount as number) / 100),
-        numberPrice: price?.unit_amount / 100,
+        numberPrice: price?.unit_amount ? price.unit_amount / 100 : null,
         defaultPriceId: price.id,
       },
       revalidate: 60 * 60 * 1,
