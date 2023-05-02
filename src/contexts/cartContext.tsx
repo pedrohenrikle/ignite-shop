@@ -1,59 +1,56 @@
-import { createContext, ReactNode, useReducer } from 'react'
-
-import {
-  addItemAction,
-  rmItemAction,
-  toggleCartAction,
-} from '../reducers/cart/actions'
-import { Item, cartReducer } from '../reducers/cart/reducer'
-
-interface CartContextType {
-  items: Item[]
-  cartShow: boolean
-  toggleCart: () => void
-  addItem: (item: Item) => void
-  rmItem: (key: number) => void
+import { createContext, ReactNode, useState } from "react"
+import { addCartToast, removeCartToast } from "../components/Toast"
+export interface ProductProps {
+    id: string
+    name: string
+    imageUrl: string
+    price: string
+    priceNumber: number
+    description: string
+    defaultPriceId: string
 }
-
-export const CartContext = createContext({} as CartContextType)
 
 interface CartContextProps {
-  children: ReactNode
+    cartItems: ProductProps[]
+    addCart: (product: ProductProps) => void
+    removeCart: (productId: string) => void
+    checkIfAlreadyInCart: (productId: string) => boolean
+    cartTotalPrice: number
 }
 
-export function CartContextProvider({ children }: CartContextProps) {
-  const [cartState, dipatch] = useReducer(cartReducer, {
-    items: [],
-    cartShow: false,
-    cartKey: 0,
-  })
+interface CartContextProviderProps {
+    children: ReactNode
+}
 
-  const { items, cartShow } = cartState
+export const CartContext = createContext({} as CartContextProps)
 
-  function addItem(item: Item) {
-    dipatch(addItemAction(item))
-  }
+export function CartContextProvider({ children }: CartContextProviderProps) {
+    const [cartItems, setCartItems] = useState<ProductProps[]>([])
 
-  function rmItem(key: number) {
-    dipatch(rmItemAction(key))
-  }
+    const cartTotalPrice = cartItems.reduce((total, product) => {
+        return total + product.priceNumber;
+    }, 0);
 
-  function toggleCart() {
-    console.log('togglecart')
-    dipatch(toggleCartAction())
-  }
+    function addCart(product: ProductProps) {
+        setCartItems((state) => [...state, product])
+        addCartToast()
+    }
 
-  return (
-    <CartContext.Provider
-      value={{
-        items,
-        cartShow,
-        toggleCart,
-        addItem,
-        rmItem,
-      }}
-    >
-      {children}
-    </CartContext.Provider>
-  )
+    function checkIfAlreadyInCart(productId: string) {
+        return cartItems.some((product) => product.id === productId)
+    }
+
+    function removeCart(productId: string) {
+        const filteredCart = cartItems.filter((item) => item.id !== productId)
+        setCartItems(filteredCart)
+        removeCartToast()
+    }
+
+    return (
+        <CartContext.Provider
+            value={{ cartItems, addCart, removeCart, checkIfAlreadyInCart, cartTotalPrice }}
+        >
+            {children}
+        </CartContext.Provider>
+    )
 }

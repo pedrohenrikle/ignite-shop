@@ -1,30 +1,42 @@
-import { styled } from '..'
+import { styled } from ".."
 
 export const ProductContainer = styled('main', {
   display: 'grid',
   gridTemplateColumns: '1fr 1fr',
   alignItems: 'stretch',
   gap: '4rem',
-
   maxWidth: 1180,
   margin: '0 auto',
+
+  '@md': {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+
+  '@container': {
+    padding: '1rem',
+  }
 })
 
 export const ImageContainer = styled('div', {
-  width: '100%',
-  maxWidth: 576,
-  height: 656,
-  background: 'linear-gradient(180deg, #1ea483 0%, #7465d4 100%)',
-  borderRadius: 8,
-  padding: '0.25rem',
-
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
+  width: '100%',
+  maxWidth: 576,
+  height: 656,
+  background: 'linear-gradient(180deg, #1ea483 0%, #7465e4 100%)',
+  borderRadius: 8,
+  padding: '0.25rem',
+
+  '@md': {
+    height: 400
+  },
 
   img: {
-    objectFit: 'cover',
-  },
+    objectFit: 'cover'
+  }
 })
 
 export const ProductDetails = styled('div', {
@@ -40,7 +52,7 @@ export const ProductDetails = styled('div', {
     marginTop: '1rem',
     display: 'block',
     fontSize: '$2xl',
-    color: '$green300',
+    color: '$green300'
   },
 
   p: {
@@ -60,14 +72,19 @@ export const ProductDetails = styled('div', {
     cursor: 'pointer',
     fontWeight: 'bold',
     fontSize: '$md',
+    transition: 'background-color 0.2s ease-in-out',
 
-    '&:disabled': {
-      opacity: 0.6,
-      cursor: 'not-allowed',
+    '@md': {
+      marginTop: '1.5rem'
     },
 
     '&:not(:disabled):hover': {
-      backgroundColor: '$green300',
+      backgroundColor: '$green300'
     },
-  },
+
+    '&:disabled': {
+      opacity: 0.6,
+      cursor: 'not-allowed'
+    }
+  }
 })
