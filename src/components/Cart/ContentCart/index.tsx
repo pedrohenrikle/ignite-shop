@@ -7,7 +7,7 @@ import { ProductCart, ProductCartWrapper, ProductImage, ProductInfo, ProductsRes
 
 export function ContentCart() {
     const [isCreatingCheckoutSession, setIsCreatingCheckoutSession] = useState(false)
-    const { cartItems, removeCart, cartTotalPrice } = useCart()
+    const { cartItems, removeCart, cartTotalPrice }: any = useCart()
 
     const formattedTotalPrice = new Intl.NumberFormat('pt-BR', {
         style: 'currency',
@@ -26,6 +26,7 @@ export function ContentCart() {
 
             window.location.href = checkoutUrl
         } catch (err) {
+
             // Conectar com uma ferramenta de observabilidade (Datadog / Sentry)
             setIsCreatingCheckoutSession(false)
 
