@@ -1,84 +1,81 @@
-import { GetStaticPaths, GetStaticProps } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
-import Stripe from 'stripe'
-import { stripe } from '../../lib/stripe'
-
-import {
-  ImageContainer,
-  ProductContainer,
-  ProductDetails
-} from '../../styles/pages/product'
-import { useCart } from '../../hooks/useCart'
+import { GetStaticPaths, GetStaticProps } from "next";
+import Head from "next/head";
+import Image from "next/image";
+import { MouseEvent, useState } from "react";
+import Stripe from "stripe";
+import { AddedToCartPopUp } from "../../components/AddedToCartPopUp";
+import { IProduct } from "../../contexts/CartContext";
+import { useCart } from "../../hooks/useCart";
+import { stripe } from "../../lib/stripe";
+import { ImageContainer, ProductContaienr, ProductDetails } from "../../styles/pages/product";
 
 interface ProductProps {
-  product: {
-    id: string
-    name: string
-    imageUrl: string
-    price: string
-    priceNumber: number
-    description: string
-    defaultPriceId: string
-  }
+  product: IProduct
 }
 
 export default function Product({ product }: ProductProps) {
-  const { addCart, checkIfAlreadyInCart } = useCart()
-  const isProductAlreadyInCart = checkIfAlreadyInCart(product.id)
+  const [showAddToCart, setShowAddToCart] = useState(false)
+  const { addToCart, checkIfItemAlreadyExists } = useCart()
+  const cartHasThisItem = checkIfItemAlreadyExists(product.id)
 
-  function handleBuyProduct() {
-    if (checkIfAlreadyInCart(product.id)) return
+  function handleAddToCart(e: MouseEvent<HTMLButtonElement>, product: IProduct) {
+    e.preventDefault()
+    addToCart(product)
+    toggleShowCart()
+  }
 
-    addCart(product)
+  function toggleShowCart() {
+    setShowAddToCart(true)
+    setTimeout(() => setShowAddToCart(false), 2000)
   }
 
   return (
     <>
       <Head>
-        <title>{product.name} | Ignite Shop</title>
+        <title>Produto | {product.name}</title>
       </Head>
-
-      <ProductContainer>
+      <AddedToCartPopUp className={`${showAddToCart ? 'show' : ''}`} />
+      <ProductContaienr>
         <ImageContainer>
           <Image src={product.imageUrl} width={520} height={480} alt="" />
         </ImageContainer>
-
         <ProductDetails>
           <h1>{product.name}</h1>
           <span>{product.price}</span>
 
           <p>{product.description}</p>
 
-          <button disabled={isProductAlreadyInCart} onClick={handleBuyProduct}>
-            {isProductAlreadyInCart
-              ? 'Produto no carrinho'
-              : 'Colocar na sacola'
-            }
+          <button
+            disabled={cartHasThisItem}
+            onClick={(e) => handleAddToCart(e, product)}
+          >
+            {cartHasThisItem ? 'Item já está na sacola' : 'Adicionar na sacola'}
           </button>
         </ProductDetails>
-      </ProductContainer>
+      </ProductContaienr>
     </>
   )
 }
 
-export const getStaticPaths: GetStaticPaths = async () => {
+export const getStaticPaths: GetStaticPaths = () => {
+  const paths = [{ params: { id: 'prod_NXTKTevx6TlVV2' } }]
+
   return {
-    paths: [
-      { params: { id: 'prod_NXTKTevx6TlVV2' } }
-    ],
+    paths,
     fallback: 'blocking'
   }
 }
 
 export const getStaticProps: GetStaticProps<any, { id: string }> = async ({ params }) => {
-  const productId = params.id
+  const productId = params?.id as string
 
   const product = await stripe.products.retrieve(productId, {
     expand: ['default_price']
   })
 
   const price = product.default_price as Stripe.Price
+
+  const revalidate = 60 * 60 * 1 // 1 Hour
 
   return {
     props: {
@@ -89,12 +86,12 @@ export const getStaticProps: GetStaticProps<any, { id: string }> = async ({ para
         price: new Intl.NumberFormat('pt-BR', {
           style: 'currency',
           currency: 'BRL'
-        }).format(price.unit_amount / 100),
-        priceNumber: price.unit_amount,
+        }).format(price.unit_amount as number / 100),
         description: product.description,
+        numberPrice: price.unit_amount as number / 100,
         defaultPriceId: price.id
       }
     },
-    revalidate: 60 * 60 * 1 // 1 hour
+    revalidate
   }
 }

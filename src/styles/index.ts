@@ -2,25 +2,26 @@ import { createStitches } from '@stitches/react'
 
 export const {
   config,
-  styled,
+  createTheme,
   css,
+  getCssText,
   globalCss,
   keyframes,
-  getCssText,
-  theme,
-  createTheme
+  styled,
+  theme
 } = createStitches({
   theme: {
     colors: {
       white: '#fff',
+
       gray900: '#121214',
       gray800: '#202024',
-      gray500: '#8D8D99',
+      gray700: '#8d8d99',
       gray300: '#c4c4cc',
       gray100: '#e1e1e6',
 
       green500: '#00875f',
-      green300: '#00b37e'
+      green300: '#00b37e',
     },
     fontSizes: {
       md: '1.125rem',
@@ -30,9 +31,7 @@ export const {
     },
   },
   media: {
-    sm: '(max-width: 500px)',
-    md: '(max-width: 768px)',
-    container: '(max-width: 1180px)',
-    notebook: '(max-width: 1366px)',
-  },
+    phone: '(max-width: 648px)',
+    tablet: '(max-width: 1024px)',
+  }
 })

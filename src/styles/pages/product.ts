@@ -1,41 +1,40 @@
-import { styled } from ".."
+import { styled } from "..";
 
-export const ProductContainer = styled('main', {
+export const ProductContaienr = styled('main', {
   display: 'grid',
   gridTemplateColumns: '1fr 1fr',
   alignItems: 'stretch',
   gap: '4rem',
+  paddingBottom: '2.5rem',
+
   maxWidth: 1180,
-  margin: '0 auto',
+  marginInline: 'auto',
 
-  '@md': {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
+  '@tablet': {
+    gridTemplateColumns: '1fr',
+    gridTemplateRows: '1fr 300px',
+    justifyItems: 'center',
 
-  '@container': {
-    padding: '1rem',
+    paddingBottom: '2rem',
   }
 })
 
 export const ImageContainer = styled('div', {
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
   width: '100%',
   maxWidth: 576,
   height: 656,
-  background: 'linear-gradient(180deg, #1ea483 0%, #7465e4 100%)',
+
+  background: 'linear-gradient(180deg, #1ea483 0%, #7465d4 100%)',
   borderRadius: 8,
   padding: '0.25rem',
 
-  '@md': {
-    height: 400
-  },
+  display: 'flex',
+  alignItems: "center",
+  justifyContent: 'center',
 
   img: {
-    objectFit: 'cover'
+    objectFit: 'cover',
+    width: '100%'
   }
 })
 
@@ -46,12 +45,17 @@ export const ProductDetails = styled('div', {
   h1: {
     fontSize: '$2xl',
     color: '$gray300',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    display: '-webkit-box',
+    '-webkit-box-orient': 'vertical',
+    '-webkit-line-clamp': 1,
   },
 
   span: {
     marginTop: '1rem',
     display: 'block',
-    fontSize: '$2xl',
+    fontSize: '2xl',
     color: '$green300'
   },
 
@@ -60,6 +64,11 @@ export const ProductDetails = styled('div', {
     fontSize: '$md',
     lineHeight: 1.6,
     color: '$gray300',
+
+    '@tablet': {
+      maxHeight: 100,
+      overflowY: "scroll"
+    }
   },
 
   button: {
@@ -71,12 +80,6 @@ export const ProductDetails = styled('div', {
     padding: '1.25rem',
     cursor: 'pointer',
     fontWeight: 'bold',
-    fontSize: '$md',
-    transition: 'background-color 0.2s ease-in-out',
-
-    '@md': {
-      marginTop: '1.5rem'
-    },
 
     '&:not(:disabled):hover': {
       backgroundColor: '$green300'

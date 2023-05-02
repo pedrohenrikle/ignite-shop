@@ -1,20 +1,13 @@
-import { styled } from ".."
+import { styled } from "..";
 
 export const SuccessContainer = styled('main', {
   display: 'flex',
   flexDirection: 'column',
-  alignItems: 'center',
   justifyContent: 'center',
-  margin: '0 auto',
+  alignItems: 'center',
+
+  marginInline: 'auto',
   height: 656,
-
-  '@container': {
-    padding: '0 1rem'
-  },
-
-  '@notebook': {
-    minHeight: 'calc(100vh - 120px)',
-  },
 
   h1: {
     fontSize: '$2xl',
@@ -27,42 +20,73 @@ export const SuccessContainer = styled('main', {
     maxWidth: 560,
     textAlign: 'center',
     marginTop: '2rem',
-    lineHeight: 1.4,
+    lineHeight: 1.4
   },
 
   a: {
     display: 'block',
     marginTop: '5rem',
-    color: '$green500',
+
     fontSize: '$lg',
+    color: '$green500',
     textDecoration: 'none',
     fontWeight: 'bold',
 
-    '&:hover': {
+    '&:not(:disabled):hover': {
       color: '$green300'
+    }
+  },
+
+  section: {
+    width: '100%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+
+    'div + div': {
+      marginLeft: 'calc(140px / -3)',
+    },
+
+    '& + h1': {
+      marginTop: '4rem',
     }
   }
 })
 
-export const ImageSection = styled('div', {
-  display: 'flex',
-  flexWrap: 'wrap',
-  justifyContent: 'center',
-  marginTop: '4rem'
-})
-
 export const ImageContainer = styled('div', {
-  position: 'relative',
-  zIndex: 1,
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
+  width: '100%',
+  maxWidth: 130,
+  height: 145,
+  background: 'linear-gradient(100deg, #1ea483 0%, #7455d4 100%)',
   padding: '0.25rem',
-  margin: '0 -26px',
 
-  width: 140,
-  height: 140,
-  background: 'linear-gradient(180deg, #1ea483 0%, #7465e4 100%)',
-  borderRadius: '50%',
-  boxShadow: '0px 0px 60px rgba(0, 0, 0, 0.8)',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+
+  img: {
+    objectFit: 'cover',
+    width: '100%',
+  },
+
+  variants: {
+    quantity: {
+      one: {
+        borderRadius: 8,
+        marginTop: '4rem',
+      },
+      multiple: {
+        borderRadius: '50%',
+        boxShadow: "0px 0px 60px rgba(0, 0, 0, 0.8)",
+        position: "relative",
+        width: '100%',
+        maxWidth: 140,
+        height: 140,
+      }
+    }
+  },
+
+  defaultVariants: {
+    quantity: 'one'
+  }
 })
